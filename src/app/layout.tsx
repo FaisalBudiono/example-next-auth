@@ -1,4 +1,4 @@
-import { Nav } from '@components/nav'
+import { Navbar } from '@components/nav'
 import { SessionProvider } from '@components/providers'
 import { getServerSession } from '@libs/auth'
 import type { Metadata } from 'next'
@@ -22,7 +22,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Nav />
+        <Navbar />
         <SessionProvider session={session}>{children}</SessionProvider>
       </body>
     </html>
