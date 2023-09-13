@@ -1,5 +1,5 @@
 import { APISingleResponse, axios } from '@libs/api'
-import { apiUrls } from '@libs/routes'
+import { apiUrls, urls } from '@libs/routes'
 import { UserResponse } from '@libs/user-profile'
 import { AxiosError } from 'axios'
 import { NextAuthOptions } from 'next-auth'
@@ -96,4 +96,8 @@ export const authOptions: NextAuthOptions = {
   },
 
   debug: process.env.NODE_ENV === 'development',
+
+  pages: {
+    signIn: urls.SIGN_IN(),
+  },
 }
