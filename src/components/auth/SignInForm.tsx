@@ -4,16 +4,18 @@ import { ButtonSubmit } from '@components/common'
 import { LoginRequest } from '@libs/auth'
 import { urls } from '@libs/routes'
 import { signIn } from 'next-auth/react'
+import { useSearchParams } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 export const SignInForm = () => {
   const { register, handleSubmit } = useForm<LoginRequest>()
+  const searchParam = useSearchParams()
 
   const onSubmit: SubmitHandler<LoginRequest> = async ({ email, password }) => {
     await signIn('credentials', {
       email,
       password,
-      callbackUrl: urls.HOME(),
+      callbackUrl: searchParam.get('callbackUrl') ?? urls.HOME(),
       redirect: true,
     })
   }
