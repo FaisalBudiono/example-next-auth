@@ -1,14 +1,13 @@
-import { urls } from '@libs/routes'
-import Link from 'next/link'
+import { NavbarMenuSection, NavbarSignSection } from '.'
 
 export const Navbar = () => {
   return (
     <nav className="flex p-5 bg-slate-400 space-x-2">
       <div className="basis-10/12">
-        <Link href={urls.HOME()}>Home</Link>
+        <NavbarMenuSection />
       </div>
       <div className="flex flex-row justify-end basis-2/12">
-        <Link href={urls.SIGN_IN()}>Sign In</Link>
+        <NavbarSignSection />
       </div>
     </nav>
   )
