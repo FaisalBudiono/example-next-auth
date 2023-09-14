@@ -1,8 +1,11 @@
 export const apiUrls = {
+  login() {
+    return '/login'
+  },
   me() {
     return '/me'
   },
-  login() {
-    return '/login'
+  posts() {
+    return '/posts'
   },
 }

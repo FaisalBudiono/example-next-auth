@@ -8,6 +8,7 @@ export const NavbarMenuSection = () => {
     <>
       <Link href={urls.HOME()}>Home</Link>
       <Link href={urls.ADMIN()}>Admin Page</Link>
+      <Link href={urls.GUEST()}>Guest</Link>
     </>
   )
 }

@@ -2,6 +2,9 @@ export const urls = {
   ADMIN() {
     return '/admin'
   },
+  GUEST() {
+    return '/guest'
+  },
   HOME() {
     return '/'
   },
