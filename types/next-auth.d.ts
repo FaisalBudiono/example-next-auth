@@ -1,10 +1,5 @@
-import { TokenSession, UserSession } from '@libs/auth'
+import { UserTokenBundle } from '@libs/auth'
 import 'next-auth'
-
-interface UserTokenBundle {
-  user?: UserSession
-  token?: TokenSession
-}
 
 declare module 'next-auth' {
   interface JWT extends UserTokenBundle {}

@@ -1,3 +1,8 @@
+export interface UserTokenBundle {
+  user?: UserSession
+  token?: TokenSession
+}
+
 export type UserSession = {
   id: string
   name: string
