@@ -1,10 +1,10 @@
 'use client'
 
-import { useRefreshToken } from '@libs/auth/useRefreshToken'
+import { axiosConfig } from '@libs/api'
 import axios, { isAxiosError } from 'axios'
 import { useSession } from 'next-auth/react'
 import { useEffect } from 'react'
-import { axiosConfig } from '.'
+import { useRefreshToken } from '../auth'
 
 const axiosAuth = axios.create(axiosConfig)
 

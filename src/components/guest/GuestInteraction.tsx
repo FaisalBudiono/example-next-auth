@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@components/common'
-import { useAxiosAuth } from '@libs/api'
+import { useAxiosAuth } from '@libs/hooks/api'
 import { apiUrls } from '@libs/routes'
 import QueryString from 'qs'
 import { useState } from 'react'

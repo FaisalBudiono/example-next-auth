@@ -1,10 +1,11 @@
 'use client'
 
-import { APISingleResponse, axios } from '@libs/api'
+import { APISingleResponse } from '@libs/api'
+import { TokenResponse, UserTokenBundle } from '@libs/auth'
 import { apiUrls, urls } from '@libs/routes'
 import { Subset } from '@libs/typescript-support'
+import axios from 'axios'
 import { signOut, useSession } from 'next-auth/react'
-import { TokenResponse, UserTokenBundle } from '.'
 
 type UpdateToken = Subset<UserTokenBundle>
 
