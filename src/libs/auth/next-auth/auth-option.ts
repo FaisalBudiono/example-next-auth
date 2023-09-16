@@ -1,10 +1,17 @@
 import { APISingleResponse, axios } from '@libs/api'
 import { apiUrls, urls } from '@libs/routes'
+import { Subset } from '@libs/typescript-support'
 import { UserResponse } from '@libs/user-profile'
 import { AxiosError } from 'axios'
 import { NextAuthOptions } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
-import { LoginRequest, TokenResponse, TokenSession, UserSession } from '..'
+import {
+  LoginRequest,
+  TokenResponse,
+  TokenSession,
+  UserSession,
+  UserTokenBundle,
+} from '..'
 
 const fetchToken = async ({
   email,
@@ -72,7 +79,7 @@ export const authOptions: NextAuthOptions = {
   },
 
   callbacks: {
-    async jwt({ token, user, trigger }) {
+    async jwt({ token, user, trigger, session }) {
       const isSuccessSignin = trigger === 'signIn' && user
       if (isSuccessSignin) {
         return {
@@ -81,6 +88,27 @@ export const authOptions: NextAuthOptions = {
           email: user.email,
           user: user.user,
           token: user.token,
+        }
+      }
+
+      if (trigger === 'update') {
+        const { token: newToken, user: newUser } =
+          session as Subset<UserTokenBundle>
+        const { token: oldToken, user: oldUser } =
+          token as Subset<UserTokenBundle>
+
+        return {
+          ...token,
+          token: {
+            accessToken: newToken?.accessToken ?? oldToken?.accessToken ?? '',
+            refreshToken:
+              newToken?.refreshToken ?? oldToken?.refreshToken ?? '',
+          },
+          user: {
+            id: newUser?.id ?? oldUser?.id ?? '',
+            email: newUser?.email ?? oldUser?.email ?? '',
+            name: newUser?.name ?? oldUser?.name ?? '',
+          },
         }
       }
 

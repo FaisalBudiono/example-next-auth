@@ -8,4 +8,7 @@ export const apiUrls = {
   posts() {
     return '/posts'
   },
+  refreshToken() {
+    return '/refresh'
+  },
 }

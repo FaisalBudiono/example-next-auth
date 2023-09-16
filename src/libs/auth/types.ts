@@ -3,6 +3,10 @@ export type LoginRequest = {
   password: string
 }
 
+export type RefreshTokenRequest = {
+  refreshToken: string
+}
+
 export type TokenResponse = {
   type: 'Bearer'
   accessToken: string
