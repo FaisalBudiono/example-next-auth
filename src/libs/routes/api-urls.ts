@@ -2,6 +2,9 @@ export const apiUrls = {
   login() {
     return '/login'
   },
+  logout() {
+    return '/logout'
+  },
   me() {
     return '/me'
   },

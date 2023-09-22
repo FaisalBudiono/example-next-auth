@@ -4,7 +4,8 @@ import { APISingleResponse, axios } from '@libs/api'
 import { TokenResponse, UserTokenBundle } from '@libs/auth'
 import { apiUrls, urls } from '@libs/routes'
 import { Subset } from '@libs/typescript-support'
-import { signOut, useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
+import { useAuth } from '.'
 
 type UpdateToken = Subset<UserTokenBundle>
 type Action = 'start' | 'finish'
@@ -12,6 +13,7 @@ const refreshTokenRequests: number[] = []
 
 export const useRefreshToken = () => {
   const { data: session, update } = useSession()
+  const { signOut } = useAuth()
 
   const broadcastRefreshAction = new BroadcastChannel('jwt-refresh-action')
   broadcastRefreshAction.addEventListener('message', (e) => {
@@ -88,8 +90,8 @@ export const useRefreshToken = () => {
       tokenManager.finish()
     } catch (error) {
       await signOut({
-        callbackUrl: urls.SIGN_IN(),
-        redirect: true,
+        callbackURL: urls.SIGN_IN(),
+        needRedirect: true,
       })
     }
   }

@@ -1,15 +1,17 @@
 'use client'
 
+import { useAuth } from '@libs/hooks/auth'
 import { urls } from '@libs/routes'
-import { signOut } from 'next-auth/react'
 
 export const SignOutButton = () => {
+  const { signOut } = useAuth()
+
   return (
     <button
       onClick={async () => {
         await signOut({
-          callbackUrl: urls.HOME(),
-          redirect: true,
+          callbackURL: urls.HOME(),
+          needRedirect: true,
         })
       }}
     >
